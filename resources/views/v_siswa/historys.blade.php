@@ -1,8 +1,8 @@
 @extends('layouts.sis')
-@section('title','Dashboard')
+@section('title', 'History')
 @section('content')
     <x-card.card>
 
     </x-card.card>
     siswaaa
-    @endsection
+@endsection

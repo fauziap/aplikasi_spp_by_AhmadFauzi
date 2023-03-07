@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('petugas_id')->constrained('m_petugas');
-            // $table->foreignId('siswa_id')->constrained('m_siswa');
             $table->date('tgl_bayar');
             $table->string('bln_dibayar');
             $table->string('thn_dibayar');
-            // $table->foreignId('spp_id')->constrained('spp');
             $table->integer('jmlh_bayar');
             $table->timestamps();
 

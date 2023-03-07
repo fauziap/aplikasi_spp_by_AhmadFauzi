@@ -12,8 +12,10 @@
 <body>
 
     <div class="flex h-screen bg-gray-200">
-        @include('layouts.sidebar.admin')
-        <div class="flex items-center lg:w-full flex-col">
+        <div>
+            @include('layouts.sidebar.admin')
+        </div>
+        <div class="flex items-center overflow-x-auto lg:w-full flex-col">
             @yield('content')
         </div>
     </div>
@@ -21,6 +23,7 @@
 
     @stack('script')
     @livewireScripts
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
     <script src="https://kit.fontawesome.com/cc0bc0809d.js" crossorigin="anonymous"></script>
 </body>
 </html>
