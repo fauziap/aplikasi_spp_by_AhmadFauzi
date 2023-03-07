@@ -28,16 +28,25 @@ class Login extends Component
         $password = $data['password'];
         $username = $data['username'];
 
-        if(Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
-            return redirect()->intended('/sis');
-        }elseif (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
-            if(Auth::user()->level=='admin'){
-                return redirect()->intended('/adm');
-            }
-            return redirect('/pet');
-        }else{
-            return $this->alert('error', 'Username atau Password salah');
+        if (Auth::attempt(['username' => $username, 'password' => $password])) {
+            return redirect()->intended('/dashboard');
         }
+
+        if(Auth::guard('petugas')->attempt(['username'=>$username, 'password'=>$password])){
+            return redirect()->intended('/dashboard');
+        }
+        return $this->alert('error', 'Username atau Password salah');
+
+        // if(Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
+        //     return redirect()->intended('/sis');
+        // }elseif (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
+        //     if(Auth::user()->level=='admin'){
+        //         return redirect()->intended('/adm');
+        //     }
+        //     return redirect('/pet');
+        // }else{
+        //     return $this->alert('error', 'Username atau Password salah');
+        // }
 
     }
 }
