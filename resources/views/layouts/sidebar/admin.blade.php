@@ -6,7 +6,7 @@
     </div>
 
     <div class="my-5 font-medium">
-        Hallo, <span>lalalala</span>
+        Hallo, <span>lalala</span>
     </div>
 
     <ul class="md:flex-col md:min-w-full flex flex-col list-none">

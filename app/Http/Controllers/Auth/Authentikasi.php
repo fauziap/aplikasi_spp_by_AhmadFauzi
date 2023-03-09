@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Authentikasi extends Controller
 {
+
     public function index()
     {
         return view('login');

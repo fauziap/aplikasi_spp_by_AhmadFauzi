@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Livewire\Auth;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -28,25 +30,33 @@ class Login extends Component
         $password = $data['password'];
         $username = $data['username'];
 
-        if (Auth::attempt(['username' => $username, 'password' => $password])) {
-            return redirect()->intended('/dashboard');
+        if (Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
+            return redirect()->intended('/siswa')->with($this->alert('success', 'Berhasil login'));
         }
 
-        if(Auth::guard('petugas')->attempt(['username'=>$username, 'password'=>$password])){
-            return redirect()->intended('/dashboard');
-        }
-        return $this->alert('error', 'Username atau Password salah');
-
-        // if(Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
-        //     return redirect()->intended('/sis');
-        // }elseif (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
-        //     if(Auth::user()->level=='admin'){
-        //         return redirect()->intended('/adm');
+        // if (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
+        //     if (Auth::check() && Auth::user()->level == 'admin') {
+        //         $this->alert('success', 'Berhasil login');
+        //         return redirect()->intended('/dashboard');
+        //     } else {
+        //         $this->alert('success', 'Berhasil login');
+        //         return redirect('/petugas');
         //     }
-        //     return redirect('/pet');
-        // }else{
         //     return $this->alert('error', 'Username atau Password salah');
         // }
-
+        if (Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
+            $this->alert('success', 'Berhasil login');
+            return redirect('/sis');
+        } elseif (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
+            if (Auth::check() && Auth::user()->level == 'admin') {
+                $this->alert('success', 'Berhasil login');
+                return redirect('/dashboard');
+            } else {
+                $this->alert('success', 'Berhasil login');
+                return redirect('/pet');
+            }
+        } else {
+            return $this->alert('error', 'Username atau Password salah');
+        }
     }
 }

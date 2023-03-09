@@ -13,8 +13,8 @@ use Illuminate\Foundation\Auth\User as Model;
 class Siswa extends Model
 {
     use HasFactory, Notifiable;
-    protected $guarded = [];
     protected $table = 'm_siswa';
+    protected $guarded = [];
 
 
     /**

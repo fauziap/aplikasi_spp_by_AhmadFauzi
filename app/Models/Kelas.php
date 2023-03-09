@@ -9,6 +9,7 @@ class Kelas extends Model
 {
     use HasFactory;
     protected $table = 'm_kelas';
+    protected $guarded = [];
 
     /**
      * Get the siswa that owns the Kelas
