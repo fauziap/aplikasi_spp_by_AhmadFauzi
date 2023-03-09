@@ -45,37 +45,37 @@
                     </thead>
                     <tbody class="bg-white divide-y rounded-xl divide-gray-200">
                         @foreach ($datas as $data)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$loop->iteration}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$data->petugas->nama}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$data->siswa->nama}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$data->tgl_bayar}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$data->bln_dibayar}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$data->thn_dibayar}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$data->spp->nominal}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{$data->jmlh_bayar}}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <a @click="showModal = true" href="#"
-                                    class="text-blue-500 hover:text-blue-600 mr-2">Edit</a>
-                                <a href="#" class="text-red-500 hover:text-red-600">Hapus</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $data->petugas->nama }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $data->siswa->nama }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $data->tgl_bayar }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $data->bln_dibayar }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $data->thn_dibayar }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $data->spp->nominal }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $data->jmlh_bayar }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <a @click="showModal = true" href="#"
+                                        class="text-blue-500 hover:text-blue-600 mr-2">Edit</a>
+                                    <a href="#" class="text-red-500 hover:text-red-600">Hapus</a>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -84,7 +84,7 @@
                     @click.away="showModal = false">
                     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div class="fixed inset-0 transition-opacity">
-                            <div class="absolute inset-0 bg-gray-600 opacity-50 " ></div>
+                            <div class="absolute inset-0 bg-gray-600 opacity-50 "></div>
                         </div>
                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
 
@@ -93,89 +93,116 @@
                             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div class="sm:flex sm:items-start">
                                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                        <h3 class=" text-center leading-6 text-xl font-bold text-gray-900" id="modal-headline">
+                                        <h3 class=" text-center leading-6 text-xl font-bold text-gray-900"
+                                            id="modal-headline">
                                             Add New Pembayaran
                                         </h3>
                                         <div class="mt-2">
-                                            <form>
-                                                <div class="mb-4 ">
+                                            <form wire:submit.prevent='simpann'>
+                                                @csrf
+                                                <div class="mb-4 w-full">
                                                     <label class="block text-gray-700 text-sm font-bold mb-2"
-                                                        for="name">
+                                                        for="level">
                                                         Petugas<span class="text-red-600">*</span>
                                                     </label>
-                                                    <input
-                                                        class="shadow border rounded-lg w-96 py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
-                                                        id="name" type="text" placeholder="Masukkan nama">
+                                                    <select wire:model='data.petugas' id="level" required
+                                                        class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
+                                                        <option class="text-gray-700 text-sm font-bold">-- Petugas --
+                                                        </option>
+                                                        @foreach ($petugas as $pet)
+                                                            <option value="{{ $pet->id }}"
+                                                                class="text-gray-700 text-sm font-semibold">
+                                                                {{ $pet->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="mb-4 w-full">
+                                                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                                                        for="level">
+                                                        Siswa<span class="text-red-600">*</span>
+                                                    </label>
+                                                    <select wire:model='data.siswa' id="level" required
+                                                        class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
+                                                        <option class="text-gray-700 text-sm font-bold">-- Siswa --
+                                                        </option>
+                                                        @foreach ($siswa as $sis)
+                                                            <option value="{{ $sis->id }}"
+                                                                class="text-gray-700 text-sm font-semibold">
+                                                                {{ $sis->nama}} {{$sis->kelas->kelas}} {{$sis->kelas->jurusan}} </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="mb-4 ">
                                                     <label class="block text-gray-700 text-sm font-bold mb-2"
                                                         for="name">
-                                                        Siswa<span class="text-red-600">*</span>
+                                                        Tanggal <span class="text-red-600">*</span>
                                                     </label>
                                                     <input
-                                                        class="shadow appearance-none border rounded-lg  w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                        id="name" type="text" placeholder="Masukkan kelas">
+                                                        class="shadow border rounded-lg w-[26rem] py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                                                        id="name" type="date" placeholder="Masukkan Tanggal "
+                                                        wire:model='data.tanggal' required>
+                                                </div>
+                                                <div class="mb-4 ">
+                                                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                                                        for="name">
+                                                        Bulan <span class="text-red-600">*</span>
+                                                    </label>
+                                                    <input
+                                                        class="shadow border rounded-lg w-[26rem] py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                                                        id="name" type="month" placeholder="Masukkan bulan "
+                                                        wire:model='data.bulan' required>
+                                                </div>
+                                                <div class="mb-4 ">
+                                                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                                                        for="name">
+                                                        Tahun <span class="text-red-600">*</span>
+                                                    </label>
+                                                    <input
+                                                        class="shadow border rounded-lg w-[26rem] py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                                                        id="name" type="text" placeholder="Masukkan tahun "
+                                                        wire:model='data.tahun' required>
                                                 </div>
                                                 <div class="mb-4 w-full">
                                                     <label class="block text-gray-700 text-sm font-bold mb-2"
-                                                        for="name">
-                                                        Tanggal<span class="text-red-600">*</span>
-                                                    </label>
-                                                    <input
-                                                        class="shadow appearance-none border rounded-lg w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                        id="name" type="text" placeholder="Masukkan username">
-                                                </div>
-                                                <div class="mb-4 w-full">
-                                                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                                                        for="name">
-                                                        Bulan<span class="text-red-600">*</span>
-                                                    </label>
-                                                    <input
-                                                        class="shadow appearance-none border rounded-lg w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                        id="name" type="text" placeholder="Masukkan password">
-                                                </div>
-                                                <div class="mb-4 w-full">
-                                                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                                                        for="name">
-                                                        Tahun<span class="text-red-600">*</span>
-                                                    </label>
-                                                    <input
-                                                        class="shadow appearance-none border rounded-lg w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                        id="name" type="text" placeholder="Masukkan nisn">
-                                                </div>
-                                                <div class="mb-4 w-full">
-                                                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                                                        for="name">
+                                                        for="level">
                                                         SPP<span class="text-red-600">*</span>
                                                     </label>
-                                                    <input
-                                                        class="shadow appearance-none border rounded-lg w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                        id="name" type="text" placeholder="Masukkan nis">
+                                                    <select wire:model='data.spp' id="level" required
+                                                        class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
+                                                        <option class="text-gray-700 text-sm font-bold">-- Spp --
+                                                        </option>
+                                                        @foreach ($spp as $spp)
+                                                            <option value="{{ $spp->id }}"
+                                                                class="text-gray-700 text-sm font-semibold">
+                                                                {{ $spp->nominal }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
-                                                <div class="mb-4 w-full">
+                                                <div class="mb-4 ">
                                                     <label class="block text-gray-700 text-sm font-bold mb-2"
                                                         for="name">
                                                         Jumlah<span class="text-red-600">*</span>
                                                     </label>
                                                     <input
-                                                        class="shadow appearance-none border rounded-lg w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                        id="name" type="text" placeholder="Masukkan alamat">
+                                                        class="shadow border rounded-lg w-[26rem] py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                                                        id="name" type="text"
+                                                        placeholder="Masukkan jumlah" wire:model='data.jumlah'
+                                                        required>
                                                 </div>
-
+                                                <div
+                                                    class="bg-gray-50 -pr-16 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                                    <button @click="showModal = false" type="button"
+                                                        class="w-full inline-flex -mr-7 justify-center rounded-md  border-gray-300 shadow-sm px-4 py-2 border bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+                                                        Cancel
+                                                    </button>
+                                                    <button type="submit"
+                                                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 transition duration-200 text-base font-medium text-white hover:bg-gray-700 focus:outline-none translate-x-1 sm:ml-3 sm:w-auto sm:text-sm">Save
+                                                    </button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                <button @click="showModal = false" type="button"
-                                    class="w-full inline-flex justify-center rounded-md  border-gray-300 shadow-sm px-4 py-2 border bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
-                                    Cancel
-                                </button>
-                                <button type="button"
-                                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 transition duration-200 text-base font-medium text-white hover:bg-gray-700 focus:outline-none translate-x-1 sm:ml-3 sm:w-auto sm:text-sm">
-                                    Save
-                                </button>
                             </div>
                         </div>
                     </div>

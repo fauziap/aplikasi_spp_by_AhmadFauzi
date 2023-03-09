@@ -30,9 +30,9 @@ class Login extends Component
         $password = $data['password'];
         $username = $data['username'];
 
-        if (Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
-            return redirect()->intended('/siswa')->with($this->alert('success', 'Berhasil login'));
-        }
+        // if (Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
+        //     return redirect()->intended('/siswa')->with($this->alert('success', 'Berhasil login'));
+        // }
 
         // if (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
         //     if (Auth::check() && Auth::user()->level == 'admin') {
