@@ -10,7 +10,7 @@ class Spp extends Model
     use HasFactory;
     protected $table = 'spp';
 
-    protected $guarded = [];
+    protected $fillable = ['tahun','nominal'];
 
     /**
      * Get the user that owns the Spp

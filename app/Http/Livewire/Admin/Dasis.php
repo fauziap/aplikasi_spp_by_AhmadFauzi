@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Exports\SiswaExport;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Spp;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Dasis extends Component
 {
@@ -23,11 +26,26 @@ class Dasis extends Component
     public function render()
     {
 
-        $datas = Siswa::with('kelas','spp')->get();
+        $user = session('user');
+        $datas = Siswa::latest()->with('kelas','spp')->get();
         $spp = Spp::all();
         $kelas = Kelas::all();
         // dd($datas);
-        return view('livewire.admin.dasis', compact('datas', 'spp', 'kelas') );
+        return view('livewire.admin.dasis', compact('datas', 'spp', 'kelas', 'user') );
+    }
+
+    public function export()
+    {
+        return Excel::download(new SiswaExport, 'data-siswa.xlsx');
+    }
+
+    public function pdf()
+    {
+        $spp = Spp::latest()->get();
+        $siswa = Siswa::with('kelas')->get();
+        $kelas = Kelas::latest()->get();
+        $pdf = Pdf::loadView('livewire.admin.dasis', ['state' => 0, 'datas' => $siswa, 'spp' => $spp, 'kelas' => $kelas]);
+        return $pdf->download('data-siswa.pdf');
     }
 
     public function cancel()

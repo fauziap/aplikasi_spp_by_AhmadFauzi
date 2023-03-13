@@ -7,6 +7,7 @@
     <title>Pembayaran SPP | @yield('title')</title>
     @vite('resources/css/app.css')
     @livewireStyles
+    @powerGridStyles
     @stack('style')
 </head>
 <body>
@@ -23,6 +24,7 @@
 
     @stack('script')
     @livewireScripts
+    @powerGridScripts
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
     <script src="https://kit.fontawesome.com/cc0bc0809d.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>

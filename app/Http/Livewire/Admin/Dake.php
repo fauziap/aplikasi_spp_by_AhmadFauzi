@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Exports\KelasExport;
 use App\Models\Kelas;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Dake extends Component
 {
@@ -19,8 +22,20 @@ class Dake extends Component
 
     public function render()
     {
-        $datas = Kelas::all();
+        $datas = Kelas::latest()->get();
         return view('livewire.admin.dake', compact('datas'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new KelasExport, 'data-kelas.xlsx');
+    }
+
+    public function pdf()
+    {
+        $kelas = Kelas::latest()->get();
+        $pdf = Pdf::loadView('livewire.admin.dake', ['state' => 0, 'datas' => $kelas]);
+        return $pdf->download('data-kelas.pdf');
     }
 
     public function cancel()

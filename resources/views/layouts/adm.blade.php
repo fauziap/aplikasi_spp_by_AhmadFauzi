@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pembayaran SPP | @yield('title')</title>
+    <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
     @vite('resources/css/app.css')
     @livewireStyles
     @stack('style')
@@ -30,5 +31,7 @@
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     <x-livewire-alert::scripts />
     <x-livewire-alert::flash />
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+
 </body>
 </html>

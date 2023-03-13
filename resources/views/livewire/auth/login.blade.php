@@ -19,17 +19,17 @@
                             <label for="username" class="block mb-2 text-md font-medium text-gray-900 ">Username</label>
                             <input type="username" name="username" id="username"
                                 class="bg-gray-50 border border-gray-300 text-gray-900  sm:text-sm rounded-lg focus:ring-gray-300  block w-full p-2.5  placeholder-gray-400   "
-                                placeholder="name@spp.com" wire:model.defer='data.username'>
+                                placeholder="name@spp.com" wire:model.defer='data.username' required>
                         </div>
                         <div>
                             <label for="password" class="block mb-2 text-md font-medium text-gray-900 ">Password</label>
                             <input type="password" name="password" id="password" placeholder="••••••••"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-300 block w-full p-2.5  placeholder-gray-400 "
-                                wire:model.defer='data.password'>
+                                wire:model.defer='data.password' required>
                         </div>
                         <div>
                             <label class="items-center">
-                                <input type="checkbox" onclick="myFunction()"> <span class="ttext-gray-700 ml-2">Show
+                                <input type="checkbox" onclick="myFunction()"> <span class="text-gray-700 ml-2">Show
                                     Password</span>
                             </label>
                         </div>

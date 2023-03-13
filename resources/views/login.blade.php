@@ -20,7 +20,7 @@
                         <h1 class="text-2xl text-center font-bold leading-tight tracking-tight text-gray-700 md:text-2xl ">
                             Silahkan login :'~
                         </h1>
-                        <form class="space-y-4 md:space-y-6" action="/log" method="POST">
+                        <form class="space-y-4 md:space-y-6" action="{{ url('/') }}" method="POST">
                             @csrf
                             <div>
                                 <label for="username" class="block mb-2 text-md font-medium text-gray-900 ">Username</label>

@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Exports\PetugasExport;
 use App\Models\Petugas;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Dape extends Component
 {
@@ -19,13 +22,24 @@ class Dape extends Component
 
     public function render()
     {
-        $datas = Petugas::all();
+        $datas = Petugas::latest()->get();
         return view('livewire.admin.dape', compact('datas'));
+    }
+    public function export()
+    {
+        return Excel::download(new PetugasExport, 'data-petugas.xlsx');
+    }
+
+    public function pdf()
+    {
+        $petugas = Petugas::latest()->get();
+        $pdf = Pdf::loadView('livewire.admin.dape', ['state' => 0, 'datas' => $petugas]);
+        return $pdf->download('data-petugas.pdf');
     }
 
     public function cancel()
     {
-        return redirect('dape');
+        return redirect()->route('dape');
     }
 
     public function simpann()
@@ -47,7 +61,7 @@ class Dape extends Component
         $data = '';
         $this->alert('success', 'Berhasil membuat petugas');
         $this->emit('petFresh');
-        return redirect('dape');
+        return redirect()->route('dape');
 
     }
 
@@ -60,7 +74,7 @@ class Dape extends Component
             $this->data['username'] = $data->username;
             $this->data['level'] = $data->level;
         }else{
-            return redirect('dape');
+            return redirect()->route('dape');
         }
     }
 
@@ -73,7 +87,7 @@ class Dape extends Component
         ]);
         $this->alert('success', 'Berhasil edit data');
         $this->emit('petFresh');
-        redirect('dape');
+        redirect()->route('dape');
 
     }
 
@@ -82,6 +96,6 @@ class Dape extends Component
         $data = Petugas::find($id);
         $data->delete();
         $this->alert('success', 'Berhasil hapus data');
-        return redirect('dape');
+        $this->emit('petFresh');
     }
 }

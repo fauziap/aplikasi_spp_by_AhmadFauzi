@@ -4,45 +4,49 @@
             App Pembayaran SPP
         </h3>
     </div>
-
-    <div class="my-5 font-medium">
-        Hallo, <span>lalala</span>
+    <div class="my-5 text-lg font-medium text-gray-600">
+        Hallo, <span class="capitalize text-gray-700 font-bold">{{Auth::user()->nama}}</span>
     </div>
-
+{{-- {{request()->route()->uri()}} --}}
     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        {{-- @if (Auth::check() && Auth::petugas()->level == 'admin') --}}
         <li class="items-center ">
             <a class=" text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block" href="{{ url('/dashboard') }}">
                 <i class="fas fa-dashboard mr-2 text-sm"></i>
                 Dashboard</a>
         </li>
+        @can('level','admin')
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dasis' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
-                href="{{ url('/dasis') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/dasis' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+                href="{{ route('dasis') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Siswa</a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dape' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
-                href="{{ url('/dape') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/dape' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+                href="{{ route('dape') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Petugas</a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dake' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
-                href="{{ url('/dake') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/dake' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+                href="{{ route('dake') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Kelas</a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'daspp' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
-                href="{{ url('/daspp') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/daspp' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+                href="{{ route('daspp') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data SPP</a>
         </li>
+        @endcan
+        {{-- @endif --}}
+        @can('level',['petugas','admin'])
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'entri' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
-                href="{{ url('/entri') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/entri' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+                href="{{ route('entri') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Entri</a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'history' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
-                href="{{ url('/history') }}"><i class="fas fa-history mr-2 text-sm"></i>
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/history' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+                href="{{ route('history') }}"><i class="fas fa-history mr-2 text-sm"></i>
                 History </a>
         </li>
         <li class="items-center">
@@ -50,6 +54,7 @@
                 href="{{ url('/logout') }}"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Logout</a>
         </li>
+        @endcan
 
     </ul>
 </div>

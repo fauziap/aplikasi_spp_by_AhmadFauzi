@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Exports\SppExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Spp;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Daspp extends Component
 {
@@ -18,13 +21,25 @@ class Daspp extends Component
 
     public function render()
     {
-        $datas = Spp::all();
+        $datas = Spp::latest()->get();
         return view('livewire.admin.daspp', compact('datas'));
     }
 
     public function cancel()
     {
         redirect('daspp');
+    }
+
+    public function export()
+    {
+        return Excel::download(new SppExport, 'DataSpp.xlsx');
+    }
+
+    public function pdf()
+    {
+        $spp = Spp::latest()->get();
+        $pdf = PDF::loadView('livewire.admin.daspp', ['datas' => $spp, 'state' => 0]);
+        return $pdf->download('data-spp.pdf');
     }
 
     public function simpann()
@@ -100,7 +115,7 @@ class Daspp extends Component
         $data = Spp::find($id);
         $data->delete();
         $this->emit('sppfress');
-        return $this->alert('success', 'Berhasil menghapus data');
+        $this->alert('success', 'Berhasil menghapus data');
 
     }
 
