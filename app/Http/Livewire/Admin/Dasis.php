@@ -26,12 +26,11 @@ class Dasis extends Component
     public function render()
     {
 
-        $user = session('user');
         $datas = Siswa::latest()->with('kelas','spp')->get();
         $spp = Spp::all();
         $kelas = Kelas::all();
         // dd($datas);
-        return view('livewire.admin.dasis', compact('datas', 'spp', 'kelas', 'user') );
+        return view('livewire.admin.dasis', compact('datas', 'spp', 'kelas') );
     }
 
     public function export()
@@ -50,7 +49,7 @@ class Dasis extends Component
 
     public function cancel()
     {
-        return redirect('dasis');
+        return redirect()->route('dasis');
     }
 
     public function simpann()
@@ -81,7 +80,7 @@ class Dasis extends Component
 
         $this->emit('sisFresh');
         $this->alert('success','Berhasil buat siswa');
-        redirect('dasis');
+        redirect()->route('dasis');
     }
 
     public function showUpdate($dataId)
@@ -100,7 +99,7 @@ class Dasis extends Component
                 $this->data['no_tlp'] = $edit->no_telp;
                 $this->data['spp'] = $edit->spp->id;
             } else {
-                return redirect('dasis');
+                return redirect()->route('dasis');
             }
         }
     }
@@ -119,7 +118,7 @@ class Dasis extends Component
         ]);
         $this->emit('sisFresh');
         $this->alert('success', 'Berhasil update data');
-        return redirect('dasis');
+        return redirect()->route('dasis');
     }
 
     public function deletee($id)

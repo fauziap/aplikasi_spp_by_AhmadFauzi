@@ -27,7 +27,7 @@ class Daspp extends Component
 
     public function cancel()
     {
-        redirect('daspp');
+        redirect()->route('daspp');
     }
 
     public function export()
@@ -60,7 +60,7 @@ class Daspp extends Component
 
         $this->emit('sppfress');
         $this->alert('success', 'Data berhasil dibuat');
-        return redirect('/daspp');
+        return redirect()->route('/daspp');
     }
 
     public function showUpdate($dataId)
@@ -75,7 +75,7 @@ class Daspp extends Component
                 // return $dataId;
                 // dd($this->data);
             }else{
-                return redirect()->to('/daspp');
+                return redirect()->route('daspp');
             }
         }
         // dd($edit);
@@ -97,7 +97,7 @@ class Daspp extends Component
         // dd($lal);
         $this->emit('sppfress');
         $this->alert('success', 'Data berhasil diupdate');
-        redirect()->intended('daspp');
+        redirect()->route('daspp');
 
         // return redirect('/daspp')->with($this->alert('success', 'Data berhasil diupdate'));
 

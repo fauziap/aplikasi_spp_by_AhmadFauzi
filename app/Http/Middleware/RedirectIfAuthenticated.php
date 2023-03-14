@@ -23,6 +23,9 @@ class RedirectIfAuthenticated
         if (Auth::guard('petugas')->check()) {
             return redirect()->route('dashboard');
         }
+        elseif (Auth::guard('siswa')->check()) {
+            return redirect()->route('siswa');
+        }
 
         $guards = empty($guards) ? [null] : $guards;
 

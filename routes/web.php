@@ -7,6 +7,7 @@ use App\Http\Livewire\Admin\Dasis;
 use App\Http\Livewire\Admin\Daspp;
 use App\Http\Livewire\Admin\Entri;
 use App\Http\Livewire\Admin\History;
+use App\Http\Livewire\Siswa\History as SiswaHistory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,22 +21,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Auth\Authentikasi::class, 'index']);
+Route::get('/', [Auth\Authentikasi::class, 'index'])->name('login');
 Route::post('/', [Auth\Authentikasi::class, 'login']);
 Route::get('/logout', [Auth\Authentikasi::class, 'logout']);
 
-Route::prefix('siswa')->group(function () {
+// Route::middleware(['auth', 'siswa'])->group(function (){
+//     Route::view('siswa', 'v_siswa.history');
+// });
+
+// Route::prefix('siswa')->middleware('auth:siswa')->group(function () {
+
+
+// });
+Route::group([
+    'prefix' => config('siswa.prefix'),
+    'namespace' => 'App\\Http\\Controllers',
+], function(){
     Route::middleware(['auth:siswa'])->group(function () {
-        Route::view('/siswa', 'v_siswa.historys');
+        Route::view('/', 'v_siswa.historys')->name('siswa');
+        Route::get('/export', [SiswaHistory::class, 'export'])->name('SiswaExport');
+        Route::get('/pdf', [SiswaHistory::class, 'pdf'])->name('SiswaPdf');
     });
 });
 
 Route::group([
-    'prefix' => config('petugas.prefix'),
+    'prefix' => config('admin.prefix'),
     'namespace' => 'App\\Http\\Controllers',
 ], function () {
-
-
 
     Route::middleware(['auth:petugas'])->group(function () {
         Route::view('/', 'v_admin.dashboard')->name('dashboard');
@@ -72,6 +84,8 @@ Route::get('entri/pdf', [Entri::class, 'pdf']);
 
 Route::get('history/export', [History::class, 'export']);
 Route::get('history/pdf', [History::class, 'pdf']);
+
+
 
 // admin
 // Route::get('/dashboard', function () {
@@ -131,11 +145,12 @@ Route::get('history/pdf', [History::class, 'pdf']);
 
 
 // Siswa
-Route::get('/siswa', function(){
-    return view('v_siswa.historys');
-});
+// Route::get('/siswa', function(){
+//     return view('v_siswa.historys');
+// });
 
 
+// Route::get('lala',[]);
 
 
 

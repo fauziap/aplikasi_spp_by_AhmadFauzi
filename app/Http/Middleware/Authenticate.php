@@ -15,11 +15,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if ($request->is(config('admin.prefix') . '*')) {
-            return route('/');
+            return route('login');
         }
-        // elseif ($request->is('siswa')) {
-        //     return route('siswa');
-        // }
+        elseif ($request->is(config('siswa.prefix'))) {
+            return route('login');
+        }
         if (! $request->expectsJson()) {
             return route('login');
         }

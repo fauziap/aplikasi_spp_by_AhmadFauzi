@@ -4,13 +4,13 @@
             <h2 class="text-2xl font-bold mb-5 leading-7 text-gray-900 sm:text-3xl sm:truncate">
                 History Pembayaran
             </h2>
-            <div class=" my-5 mt-10 flex ">
+            <div class=" my-5 mt-7 flex ">
                     <div>
-                        <a href="{{ url('entri/export') }}"
+                        <a href="{{ route('SiswaExport') }}"
                             class="bg-green-700 mt-3 hover:bg-green-800 text-white py-1 px-3 mr-2 rounded-lg ">
                             <i class="fas fa-file-excel text-sm"></i> Excel
                         </a>
-                        <a href="{{ url('entri/pdf') }}"
+                        <a href="{{ route('SiswaPdf') }}"
                             class="bg-red-600 mt-3 hover:bg-red-700 text-white py-1 px-3 mr-5 rounded-lg ">
                             <i class="fas fa-file-pdf text-sm"></i> Pdf
                         </a>

@@ -14,7 +14,7 @@
 
     <div class="flex h-screen bg-gray-200">
         <div>
-            @include('layouts.sidebar.petugas')
+            {{-- @include('layouts.sidebar.petugas') --}}
         </div>
         <div class="flex items-center overflow-x-auto lg:w-full flex-col">
             @yield('content')

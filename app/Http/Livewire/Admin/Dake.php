@@ -40,7 +40,7 @@ class Dake extends Component
 
     public function cancel()
     {
-        return redirect('dake');
+        return redirect()->route('dake');
     }
 
     public function simpann()
@@ -61,7 +61,7 @@ class Dake extends Component
         $data = '';
         $this->emit('kelasFresh');
         $this->alert('success', 'Berhasil buat kelas');
-        return redirect('dake');
+        return redirect()->route('dake');
     }
 
     public function showUpdate($dataId)
@@ -72,7 +72,7 @@ class Dake extends Component
             $this->data['kelas'] = $edit->kelas;
             $this->data['jurusan'] = $edit->jurusan;
         }else{
-            return redirect('dake');
+            return redirect()->route('dake');
         }
     }
 
@@ -85,7 +85,7 @@ class Dake extends Component
 
         $this->emit('kelasFresh');
         $this->alert('success', 'Berhasil update kelas');
-        return redirect('dake');
+        return redirect()->route('dake');
 
     }
 

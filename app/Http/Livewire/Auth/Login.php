@@ -41,17 +41,13 @@ class Login extends Component
         // }
 
         if (Auth::guard('siswa')->attempt(['username' => $username, 'password' => $password])) {
-            // $request->session()->regenerate();
-            $user = Auth::user();
-            $this->setUserSession($user);
-            return redirect()->intended('siswa');
-        } elseif (Auth::guard('petugas')->attempt($simpan = ['username' => $username, 'password' => $password])) {
-            $user = Auth::user();
-            $this->setUserSession($user);
-            // $this->data->session()->regenerate();
-            return redirect()->intended(config('petugas.prefix'));
+            $this->alert('success', 'Login Berhasil');
+            return redirect()->intended(config('siswa.prefix'));
+        } elseif (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
+            $this->alert('success', 'Login Berhasil');
+            return redirect()->intended(config('admin.prefix'));
         }
-        return $this->alert('error', 'Login gagal');
+        return $this->alert('error', 'Username atau Password salah');
 
 
 
@@ -77,17 +73,17 @@ class Login extends Component
         // return $this->alert('error', 'Login gagal');
 
 
-            // $user = $this->data = DB::table('m_petugas')->get();
+        // $user = $this->data = DB::table('m_petugas')->get();
 
-            //     dd($user);
-                // if (in_array(Auth::user()->level=='0'))
-                // {
-                //     // dd($lala);
-                //     return redirect('dashboard');
-                // }elseif(in_array($user->level, ['1']))
-                // {
-                //     return redirect('petugas');
-                // }
+        //     dd($user);
+        // if (in_array(Auth::user()->level=='0'))
+        // {
+        //     // dd($lala);
+        //     return redirect('dashboard');
+        // }elseif(in_array($user->level, ['1']))
+        // {
+        //     return redirect('petugas');
+        // }
 
 
         // if (Auth::guard('petugas')->attempt(['username' => $username, 'password' => $password])) {
@@ -115,9 +111,5 @@ class Login extends Component
         // } else {
         //     return $this->alert('error', 'Username atau Password salah');
         // }
-    }
-    public function setUserSession($user)
-    {
-        session(['user' => $user]);
     }
 }

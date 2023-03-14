@@ -16,30 +16,26 @@ class Authentikasi extends Controller
         return view('login');
     }
 
-    public function setUserSession($user)
-    {
-        session(['user' => $user]);
-    }
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'username' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        // dd($credentials);
-        if (Auth::guard('siswa')->attempt($credentials)) {
-            $request->session()->regenerate();
-            $user = Auth::user();
-            $this->setUserSession($user);
-            return redirect()->intended('siswa');
-        } elseif (Auth::guard('petugas')->attempt($credentials, $request->remember)) {
-            $user = Auth::user();
-            $this->setUserSession($user);
-            $request->session()->regenerate();
-            return redirect()->intended(config('petugas.prefix'));
-        }
-        return $this->alert('error', 'Username atau Password salah');
+        // $credentials = $request->validate([
+        //     'username' => ['required', 'email'],
+        //     'password' => ['required'],
+        // ]);
+        // // dd($credentials);
+        // if (Auth::guard('siswa')->attempt($credentials)) {
+        //     $request->session()->regenerate();
+        //     $user = Auth::user();
+        //     $this->setUserSession($user);
+        //     return redirect()->intended('siswa');
+        // } elseif (Auth::guard('petugas')->attempt($credentials, $request->remember)) {
+        //     $user = Auth::user();
+        //     $this->setUserSession($user);
+        //     $request->session()->regenerate();
+        //     return redirect()->intended(config('petugas.prefix'));
+        // }
+        // return $this->alert('error', 'Username atau Password salah');
         // elseif (Auth::guard('petugas')->attempt($credentials, $request->remember)) {
         //     $request->session()->regenerate();
         //     return redirect()->intended(config('petugas.prefix'));
@@ -54,11 +50,8 @@ class Authentikasi extends Controller
 
         Auth::guard('siswa')->logout();
         Auth::guard('petugas')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }

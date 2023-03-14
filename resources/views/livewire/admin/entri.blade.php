@@ -191,8 +191,7 @@
                                                             </option>
                                                             @foreach ($spp as $spp)
                                                                 <option value="{{ $spp->id }}"
-                                                                    class="text-gray-700 text-sm font-semibold">
-                                                                    {{ $spp->nominal }}</option>
+                                                                    class="text-gray-700 text-sm font-semibold">Rp. {{ number_format($spp->nominal) }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -327,8 +326,7 @@
                                                             </option>
                                                             @foreach ($spp as $spp)
                                                                 <option value="{{ $spp->id }}"
-                                                                    class="text-gray-700 text-sm font-semibold">
-                                                                    {{ $spp->nominal }}</option>
+                                                                    class="text-gray-700 text-sm font-semibold">Rp. {{ number_format($spp->nominal) }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

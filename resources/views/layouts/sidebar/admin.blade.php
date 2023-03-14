@@ -5,7 +5,7 @@
         </h3>
     </div>
     <div class="my-5 text-lg font-medium text-gray-600">
-        Hallo, <span class="capitalize text-gray-700 font-bold">{{Auth::user()->nama}}</span>
+        Haii, <span class="capitalize text-gray-700 font-bold">{{Auth::user()->nama}}🖐</span>
     </div>
 {{-- {{request()->route()->uri()}} --}}
     <ul class="md:flex-col md:min-w-full flex flex-col list-none">

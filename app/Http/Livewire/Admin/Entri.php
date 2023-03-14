@@ -47,7 +47,7 @@ class Entri extends Component
     }
 
     public function cancel(){
-        return redirect('entri');
+        return redirect()->route('entri');
     }
 
     public function simpann()
@@ -64,7 +64,7 @@ class Entri extends Component
         ]);
         $this->emit('pemFresh');
         $this->alert('success', 'Berhasil melakukan pembayaran');
-        return redirect('entri');
+        return redirect()->route('entri');
     }
 
     public function showUpdate($dataId)
@@ -97,7 +97,7 @@ class Entri extends Component
         ]);
         $this->emit('pemFresh');
         $this->alert('success','Berhasil update pembayaran');
-        redirect('entri');
+        redirect()->route('entri');
     }
 
     public function delete($id)

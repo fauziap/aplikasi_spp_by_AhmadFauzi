@@ -4,23 +4,21 @@
             App Pembayaran SPP
         </h3>
     </div>
-
-    <div class="my-5 font-medium">
-        Hallo, <span>{{Auth::user()}}</span>
+    <div class="my-5 text-lg font-medium text-gray-600">
+        Haii, <span class="capitalize text-gray-700 font-bold">{{ Auth::user()->nama }}🖐</span>
     </div>
-
     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         {{-- <li class="items-center ">
             <a class=" text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'hal' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block" href="{{ url('/hal') }}">
                 <i class="fas fa-dashboard"></i> Dashboard</a>
         </li> --}}
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'siswa' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+            <a class="text-sm uppercase pl-3 py-3 {{ request()->route()->uri() == 'siswa'? 'text-[#fff] bg-blue-500 rounded-r-full': ' text-gray-500 hover:text-blue-600' }} font-medium block""
                 href="{{ url('/siswa') }}"><i class="fas fa-history mr-2 text-sm"></i>
                 History </a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'logout' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block"
+            <a class="text-sm uppercase pl-3 py-3 {{ request()->route()->uri() == 'logout'? 'text-[#fff] bg-blue-500 rounded-r-full': ' text-gray-500 hover:text-blue-600' }} font-medium block"
                 href="{{ url('/logout') }}"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Logout</a>
         </li>
