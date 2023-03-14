@@ -8,6 +8,7 @@ use App\Http\Livewire\Admin\Daspp;
 use App\Http\Livewire\Admin\Entri;
 use App\Http\Livewire\Admin\History;
 use App\Http\Livewire\Siswa\History as SiswaHistory;
+use App\Http\Livewire\TabelPdf\TabelDasis;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -150,7 +151,7 @@ Route::get('history/pdf', [History::class, 'pdf']);
 // });
 
 
-// Route::get('lala',[]);
+// Route::livewire('lala',[TabelDasis::class]);
 
 
 
