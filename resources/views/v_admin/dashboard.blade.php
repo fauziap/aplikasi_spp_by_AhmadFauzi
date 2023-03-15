@@ -60,7 +60,7 @@
                 <div>
                     <div class="bg-white shadow-lg w-80  rounded-lg overflow-hidden">
                         <div class=" flex items-center p-5 ">
-                            <i class="fas fa-newspaper text-3xl text-gray-700 mx-4"></i>
+                            <i class="fas fa-wallet text-3xl text-gray-700 mx-4"></i>
                             <h2 class="text-2xl text-gray-700 font-bold">Data Entri</h2>
                         </div>
                         <div class="bg-gray-100 text-right py-2 px-4">

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth as Auth;
+use App\Http\Controllers\tablePdf\DapeController;
+use App\Http\Controllers\tablePdf\DasisController;
 use App\Http\Livewire\Admin\Dake;
 use App\Http\Livewire\Admin\Dape;
 use App\Http\Livewire\Admin\Dasis;
@@ -24,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['guest'])->group(function(){
     Route::get('/', [Auth\Authentikasi::class, 'index'])->name('login');
     Route::post('/', [Auth\Authentikasi::class, 'login']);
+});
+
+Route::get('/lala', function(){
+    return view('tablePdf.dasis');
 });
 
 Route::get('/logout', [Auth\Authentikasi::class, 'logout']);
