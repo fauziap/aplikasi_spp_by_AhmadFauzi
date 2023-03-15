@@ -13,8 +13,8 @@ class Petugas extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $guarded = [];
     protected $table = 'm_petugas';
+    protected $guarded = [];
 
     /**
      * Get the pembayaran that owns the Petugas

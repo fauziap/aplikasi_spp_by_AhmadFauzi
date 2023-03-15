@@ -16,7 +16,7 @@
                             <i class="fas fa-file-excel text-sm"></i> Excel
                         </a>
                         <a href="{{ url('dake/pdf') }}"
-                            class="bg-red-600 mt-3 hover:bg-red-700 text-white py-1 px-3 mr-5 rounded-xl ">
+                            class="bg-red-600 mt-3 hover:bg-red-700 text-white py-1 px-3 mr-5 rounded-lg">
                             <i class="fas fa-file-pdf text-sm"></i> Pdf
                         </a>
                     </div>

@@ -6,11 +6,11 @@
             </h2>
             <div class=" my-5 mt-10 flex ">
                     <div>
-                        <a href="{{ url('entri/export') }}"
+                        <a href="{{ url('history/export') }}"
                             class="bg-green-700 mt-3 hover:bg-green-800 text-white py-1 px-3 mr-2 rounded-lg ">
                             <i class="fas fa-file-excel text-sm"></i> Excel
                         </a>
-                        <a href="{{ url('entri/pdf') }}"
+                        <a href="{{ url('history/pdf') }}"
                             class="bg-red-600 mt-3 hover:bg-red-700 text-white py-1 px-3 mr-5 rounded-lg ">
                             <i class="fas fa-file-pdf text-sm"></i> Pdf
                         </a>

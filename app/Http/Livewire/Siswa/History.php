@@ -28,7 +28,7 @@ class History extends Component
     {
         $id = Auth::user()->id;
         $pembayaran = Pembayaran::where('siswa_id', $id)->latest()->get();
-        $pdf = Pdf::loadView('livewire.siswa.history', ['datas' => $pembayaran]);
+        $pdf = Pdf::loadView('tablePdf.siswaHistory', ['datas' => $pembayaran]);
         return $pdf->download('data-pembayaran-'. Auth::user()->nama .'.pdf');
     }
 }

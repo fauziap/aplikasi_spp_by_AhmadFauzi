@@ -45,7 +45,7 @@ class Dasis extends Component
         $spp = Spp::latest()->get();
         $siswa = Siswa::with('kelas')->get();
         $kelas = Kelas::latest()->get();
-        $pdf = Pdf::loadView('livewire.admin.dasis', ['state' => 0, 'datas' => $siswa, 'spp' => $spp, 'kelas' => $kelas]);
+        $pdf = Pdf::loadView('tablePdf.dasis', ['dat' => $siswa, 'spp' => $spp, 'kelas' => $kelas]);
         return $pdf->download('data-siswa.pdf');
     }
 

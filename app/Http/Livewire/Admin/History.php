@@ -21,7 +21,7 @@ class History extends Component
 
     public function export()
     {
-        return Excel::download(new PembayaranExport, 'data-pembayaran.xlsx');
+        return Excel::download(new PembayaranExport, 'data-history.xlsx');
     }
 
     public function pdf()
@@ -30,7 +30,7 @@ class History extends Component
         $siswa = Siswa::with('kelas')->get();
         $petugas = Petugas::latest()->get();
         $entri = Pembayaran::latest()->get();
-        $pdf = Pdf::loadView('livewire.admin.history', ['datas' => $entri, 'state' => 0, 'petugas' => $petugas, 'siswa' => $siswa, 'spp' => $spp]);
+        $pdf = Pdf::loadView('tablePdf.history', ['datas' => $entri, 'petugas' => $petugas, 'siswa' => $siswa, 'spp' => $spp]);
         return $pdf->download('data-history.pdf');
     }
 }

@@ -1,16 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth as Auth;
-use App\Http\Controllers\tablePdf\DapeController;
-use App\Http\Controllers\tablePdf\DasisController;
-use App\Http\Livewire\Admin\Dake;
-use App\Http\Livewire\Admin\Dape;
-use App\Http\Livewire\Admin\Dasis;
-use App\Http\Livewire\Admin\Daspp;
-use App\Http\Livewire\Admin\Entri;
+use App\Http\Livewire\Admin as Adm;
 use App\Http\Livewire\Admin\History;
 use App\Http\Livewire\Siswa\History as SiswaHistory;
-use App\Http\Livewire\TabelPdf\TabelDasis;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,21 +20,8 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/', [Auth\Authentikasi::class, 'index'])->name('login');
     Route::post('/', [Auth\Authentikasi::class, 'login']);
 });
-
-Route::get('/lala', function(){
-    return view('tablePdf.dasis');
-});
-
 Route::get('/logout', [Auth\Authentikasi::class, 'logout']);
 
-// Route::middleware(['auth', 'siswa'])->group(function (){
-//     Route::view('siswa', 'v_siswa.history');
-// });
-
-// Route::prefix('siswa')->middleware('auth:siswa')->group(function () {
-
-
-// });
 Route::group([
     'prefix' => config('siswa.prefix'),
     'namespace' => 'App\\Http\\Controllers',
@@ -76,20 +56,20 @@ Route::group([
     });
 });
 
-Route::get('dasis/export', [Dasis::class, 'export']);
-Route::get('dasis/pdf', [Dasis::class, 'pdf']);
+Route::get('dasis/export', [Adm\Dasis::class, 'export']);
+Route::get('dasis/pdf', [Adm\Dasis::class, 'pdf']);
 
-Route::get('dape/export', [Dape::class, 'export']);
-Route::get('dape/pdf', [Dape::class, 'pdf']);
+Route::get('dape/export', [Adm\Dape::class, 'export']);
+Route::get('dape/pdf', [Adm\Dape::class, 'pdf']);
 
-Route::get('dake/export', [Dake::class, 'export']);
-Route::get('dake/pdf', [Dake::class, 'pdf']);
+Route::get('dake/export', [Adm\Dake::class, 'export']);
+Route::get('dake/pdf', [Adm\Dake::class, 'pdf']);
 
-Route::get('spp/export', [Daspp::class, 'export']);
-Route::get('spp/pdf', [Daspp::class, 'pdf']);
+Route::get('spp/export', [Adm\Daspp::class, 'export']);
+Route::get('spp/pdf', [Adm\Daspp::class, 'pdf']);
 
-Route::get('entri/export', [Entri::class, 'export']);
-Route::get('entri/pdf', [Entri::class, 'pdf']);
+Route::get('entri/export', [Adm\Entri::class, 'export']);
+Route::get('entri/pdf', [Adm\Entri::class, 'pdf']);
 
 Route::get('history/export', [History::class, 'export']);
 Route::get('history/pdf', [History::class, 'pdf']);

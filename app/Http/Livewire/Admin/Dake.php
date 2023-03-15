@@ -34,7 +34,7 @@ class Dake extends Component
     public function pdf()
     {
         $kelas = Kelas::latest()->get();
-        $pdf = Pdf::loadView('livewire.admin.dake', ['state' => 0, 'datas' => $kelas]);
+        $pdf = Pdf::loadView('tablePdf.dake', ['datas' => $kelas]);
         return $pdf->download('data-kelas.pdf');
     }
 

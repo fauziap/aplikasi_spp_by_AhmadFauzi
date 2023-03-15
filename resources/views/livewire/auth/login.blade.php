@@ -8,7 +8,7 @@
                 <p>App Pembayaran SPP</p>
                 <p>By Ahmad Fauzi</p>
             </div>
-            <div class="w-full bg-gray-300 rounded-2xl shadow border md:mt-0 sm:max-w-md xl:p-0 text-gray-700 ">
+            <div class="w-full bg-gray-200 rounded-2xl shadow border md:mt-0 sm:max-w-md xl:p-0 text-gray-700 ">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-2xl text-center font-bold leading-tight tracking-tight text-gray-700 md:text-2xl ">
                         Silahkan login :'~

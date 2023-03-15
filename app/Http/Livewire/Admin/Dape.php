@@ -34,7 +34,7 @@ class Dape extends Component
     public function pdf()
     {
         $petugas = Petugas::latest()->get();
-        $pdf = Pdf::loadView('livewire.admin.dape', ['state' => 0, 'datas' => $petugas]);
+        $pdf = Pdf::loadView('tablePdf.dape', ['datas' => $petugas]);
         return $pdf->download('data-petugas.pdf');
     }
 

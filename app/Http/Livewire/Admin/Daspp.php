@@ -32,13 +32,13 @@ class Daspp extends Component
 
     public function export()
     {
-        return Excel::download(new SppExport, 'DataSpp.xlsx');
+        return Excel::download(new SppExport, 'data-spp.xlsx');
     }
 
     public function pdf()
     {
         $spp = Spp::latest()->get();
-        $pdf = PDF::loadView('livewire.admin.daspp', ['datas' => $spp, 'state' => 0]);
+        $pdf = PDF::loadView('tablePdf.daspp', ['datas' => $spp]);
         return $pdf->download('data-spp.pdf');
     }
 

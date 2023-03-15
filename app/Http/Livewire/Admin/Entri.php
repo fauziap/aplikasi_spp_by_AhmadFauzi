@@ -8,6 +8,7 @@ use App\Models\Petugas;
 use App\Models\Siswa;
 use App\Models\Spp;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
@@ -42,7 +43,7 @@ class Entri extends Component
         $siswa = Siswa::with('kelas')->get();
         $petugas = Petugas::latest()->get();
         $entri = Pembayaran::latest()->get();
-        $pdf = PDF::loadView('livewire.admin.entri', ['datas' => $entri, 'state' => 0, 'petugas' => $petugas, 'siswa' => $siswa, 'spp' => $spp]);
+        $pdf = PDF::loadView('tablePdf.entri', ['datas' => $entri, 'petugas' => $petugas, 'siswa' => $siswa, 'spp' => $spp]);
         return $pdf->download('data-entri.pdf');
     }
 
@@ -52,18 +53,25 @@ class Entri extends Component
 
     public function simpann()
     {
-        $data = $this->data;
-        Pembayaran::create([
-            'petugas_id' => $data['petugas'],
-            'siswa_id' => $data['siswa'],
-            'tgl_bayar' => $data['tanggal'],
-            'bln_dibayar' => $data['bulan'],
-            'thn_dibayar' => $data['tahun'],
-            'spp_id' => $data['spp'],
-            'jmlh_bayar' => $data['jumlah'],
-        ]);
-        $this->emit('pemFresh');
-        $this->alert('success', 'Berhasil melakukan pembayaran');
+        DB::beginTransaction();
+        try{
+            $data = $this->data;
+            Pembayaran::create([
+                'petugas_id' => $data['petugas'],
+                'siswa_id' => $data['siswa'],
+                'tgl_bayar' => $data['tanggal'],
+                'bln_dibayar' => $data['bulan'],
+                'thn_dibayar' => $data['tahun'],
+                'spp_id' => $data['spp'],
+                'jmlh_bayar' => $data['jumlah'],
+            ]);
+            DB::commit();
+            $this->emit('pemFresh');
+            $this->alert('success', 'Berhasil melakukan pembayaran');
+        } catch (\Exception) {
+            DB::rollBack();
+            $this->alert('error', 'Terjadi kesalahan. Data tidak berhasil');
+        }
         return redirect()->route('entri');
     }
 
@@ -86,17 +94,24 @@ class Entri extends Component
 
     public function updatee()
     {
-        Pembayaran::where('id', $this->data['id'])->update([
-            'petugas_id' => $this->data['petugas'],
-            'siswa_id' => $this->data['siswa'],
-            'tgl_bayar' => $this->data['tanggal'],
-            'bln_dibayar' => $this->data['bulan'],
-            'thn_dibayar' => $this->data['tahun'],
-            'spp_id' => $this->data['spp'],
-            'jmlh_bayar' => $this->data['jumlah']
-        ]);
-        $this->emit('pemFresh');
-        $this->alert('success','Berhasil update pembayaran');
+        DB::beginTransaction();
+        try{
+            Pembayaran::where('id', $this->data['id'])->update([
+                'petugas_id' => $this->data['petugas'],
+                'siswa_id' => $this->data['siswa'],
+                'tgl_bayar' => $this->data['tanggal'],
+                'bln_dibayar' => $this->data['bulan'],
+                'thn_dibayar' => $this->data['tahun'],
+                'spp_id' => $this->data['spp'],
+                'jmlh_bayar' => $this->data['jumlah']
+            ]);
+            DB::commit();
+            $this->emit('pemFresh');
+            $this->alert('success','Berhasil update pembayaran');
+        } catch (\Exception){
+            DB::rollBack();
+            $this->alert('error', 'Terjadi kesalahan. Update pembayaran gagal');
+        }
         redirect()->route('entri');
     }
 
