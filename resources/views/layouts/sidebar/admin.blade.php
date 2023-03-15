@@ -17,22 +17,22 @@
         </li>
         @can('level','admin')
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/dasis' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/data-siswa' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
                 href="{{ route('dasis') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Siswa</a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/dape' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/data-petugas' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
                 href="{{ route('dape') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Petugas</a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/dake' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/data-kelas' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
                 href="{{ route('dake') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Kelas</a>
         </li>
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/daspp' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/data-spp' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
                 href="{{ route('daspp') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data SPP</a>
         </li>
@@ -40,7 +40,7 @@
         {{-- @endif --}}
         @can('level',['petugas','admin'])
         <li class="items-center">
-            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/entri' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
+            <a class="text-sm uppercase pl-3 py-3 {{request()->route()->uri()== 'dashboard/data-entri' ? "text-[#fff] bg-blue-500 rounded-r-full" : " text-gray-500 hover:text-blue-600"}} font-medium block""
                 href="{{ route('entri') }}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Data Entri</a>
         </li>

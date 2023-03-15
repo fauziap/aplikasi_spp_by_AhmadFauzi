@@ -21,9 +21,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['guest'])->group(function(){
+    Route::get('/', [Auth\Authentikasi::class, 'index'])->name('login');
+    Route::post('/', [Auth\Authentikasi::class, 'login']);
+});
 
-Route::get('/', [Auth\Authentikasi::class, 'index'])->name('login');
-Route::post('/', [Auth\Authentikasi::class, 'login']);
 Route::get('/logout', [Auth\Authentikasi::class, 'logout']);
 
 // Route::middleware(['auth', 'siswa'])->group(function (){
@@ -53,15 +55,15 @@ Route::group([
     Route::middleware(['auth:petugas'])->group(function () {
         Route::view('/', 'v_admin.dashboard')->name('dashboard');
 
-        Route::view('/dasis', 'v_admin.dasis')->name('dasis')->middleware('can:level,"admin"');
+        Route::view('/data-siswa', 'v_admin.dasis')->name('dasis')->middleware('can:level,"admin"');
 
-        Route::view('/dape','v_admin.dape')->name('dape')->middleware('can:level,"admin"');
+        Route::view('/data-petugas','v_admin.dape')->name('dape')->middleware('can:level,"admin"');
 
-        Route::view('/dake','v_admin.dake')->name('dake')->middleware('can:level,"admin"');
+        Route::view('/data-kelas','v_admin.dake')->name('dake')->middleware('can:level,"admin"');
 
-        Route::view('/daspp','v_admin.daspp')->name('daspp')->middleware('can:level,"admin"');
+        Route::view('/data-spp','v_admin.daspp')->name('daspp')->middleware('can:level,"admin"');
 
-        Route::view('/entri','v_admin.entri')->name('entri')->middleware('can:level,"admin","petugas"');
+        Route::view('/data-entri','v_admin.entri')->name('entri')->middleware('can:level,"admin","petugas"');
 
         Route::view('/history','v_admin.history')->name('history')->middleware('can:level,"admin","petugas"');
 

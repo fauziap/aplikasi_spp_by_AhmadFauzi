@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class cekLogin
 {
@@ -16,11 +17,10 @@ class cekLogin
      */
     public function handle(Request $request, Closure $next, ...$levels)
     {
-        if(in_array($request->petugas()->level, $levels)){
-            return redirect('dashboard');
-            }else{
-                return redirect('sis');
-            }
+        if (Auth::guard('siswa')->check()) {
+            return redirect()->route('siswa');
+        }
+        return $next($request);
     }
 
 }

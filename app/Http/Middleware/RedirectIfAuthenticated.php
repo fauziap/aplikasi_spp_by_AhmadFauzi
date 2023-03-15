@@ -20,21 +20,22 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
 
-        if (Auth::guard('petugas')->check()) {
+        if (Auth::guard('siswa')->check()) {
+            return redirect()->route('siswa');
+        }elseif (Auth::guard('petugas')->check()) {
             return redirect()->route('dashboard');
         }
-        elseif (Auth::guard('siswa')->check()) {
-            return redirect()->route('siswa');
-        }
-
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
-        }
-
         return $next($request);
+
+
+        // $guards = empty($guards) ? [null] : $guards;
+
+        // foreach ($guards as $guard) {
+        //     if (Auth::guard($guard)->check()) {
+        //         return redirect(RouteServiceProvider::HOME);
+        //     }
+        // }
+
+        // return $next($request);
     }
 }

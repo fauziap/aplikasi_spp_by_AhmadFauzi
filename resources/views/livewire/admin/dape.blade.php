@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div>
-        <div class="py-8 " x-data="{ showModal: false }">
+        <div class="py-8 " x-cloak x-data="{ showModal: false }">
             <div class=" mb-5">
                 <h2 class="text-2xl font-bold mb-5 leading-7 text-gray-900 sm:text-3xl sm:truncate">
                     Data Petugas
@@ -89,6 +89,11 @@
                                                 id="modal-headline">
                                                 Add New Petugas
                                             </h3>
+                                            @error('username')
+                                            <div class="bg-red-100 text-center rounded-lg py-1 my-4">
+                                                <p class="text-red-500 font-semibold "><i class="fas fa-exclamation-circle mr-2"></i>{{$message}}</p>
+                                            </div>
+                                            @enderror
                                             <div class="mt-2">
                                                 <form wire:submit.prevent='simpann'>
                                                     @csrf
@@ -179,6 +184,11 @@
                                                 id="modal-headline">
                                                 Edit Data Petugas
                                             </h3>
+                                            @error('username')
+                                            <div class="bg-red-100 text-center rounded-lg py-1 my-4">
+                                                <p class="text-red-500 font-semibold "><i class="fas fa-exclamation-circle mr-2"></i>{{$message}}</p>
+                                            </div>
+                                            @enderror
                                             <div class="mt-2">
                                                 <form wire:submit.prevent='updatee'>
                                                     @csrf

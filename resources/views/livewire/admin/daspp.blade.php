@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div>
-        <div class="py-8 " x-data="{ showModal: false }">
+        <div class="py-8 " x-cloak x-data="{ showModal: false }">
             <div class=" mb-5">
                 <h2 class="text-2xl font-bold mb-5 leading-7 text-gray-900 sm:text-3xl sm:truncate">
                     Data SPP

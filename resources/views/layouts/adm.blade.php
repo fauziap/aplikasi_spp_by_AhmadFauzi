@@ -9,6 +9,9 @@
     @vite('resources/css/app.css')
     @livewireStyles
     @stack('style')
+    <style>
+        [x-cloak] { display: none }
+    </style>
 </head>
 <body>
 

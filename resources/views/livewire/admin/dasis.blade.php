@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div>
-        <div class="py-8 " x-data="{ showModal: false }">
+        <div class="py-8 " x-cloak x-data="{ showModal: false }">
             <div class=" mb-5">
                 <h2 class="text-2xl font-bold mb-5 leading-7 text-gray-900 sm:text-3xl sm:truncate">
                     Data Siswa
@@ -119,6 +119,11 @@
                                                 id="modal-headline">
                                                 Add New Siswa
                                             </h3>
+                                            @error('username')
+                                            <div class="bg-red-100 text-center rounded-lg py-1 my-4">
+                                                <p class="text-red-500 font-semibold "><i class="fas fa-exclamation-circle mr-2"></i>{{$message}}</p>
+                                            </div>
+                                            @enderror
                                             <div class="mt-2">
                                                 <form wire:submit.prevent='simpann'>
                                                     @csrf
@@ -134,14 +139,13 @@
                                                     </div>
                                                     <div class="mb-4 w-full">
                                                         <label class="block text-gray-700 text-sm font-bold mb-2"
-                                                            for="level">
+                                                            for="level" required>
                                                             Kelas<span class="text-red-600">*</span>
                                                         </label>
-                                                        <select wire:model='data.kelas' id="level" required
-                                                            class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
-                                                            <option class="text-gray-700 text-sm font-bold">-- Kelas --
+                                                        <select required wire:model='data.kelas' id="level" class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" >
+                                                            <option class="text-gray-700 text-sm font-bold" >-- Kelas --
                                                             </option>
-                                                            @foreach ($kelas as $kls)
+                                                            @foreach ($kelass as $kls)
                                                                 <option value="{{ $kls->id }}"
                                                                     class="text-gray-700 text-sm font-semibold">
                                                                     {{ $kls->kelas }} {{ $kls->jurusan }}</option>
@@ -222,7 +226,7 @@
                                                             class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
                                                             <option class="text-gray-700 text-sm font-bold">-- Spp --
                                                             </option>
-                                                            @foreach ($spp as $spp)
+                                                            @foreach ($sppp as $spp)
                                                                 <option value="{{ $spp->id }}"
                                                                     class="text-gray-700 text-sm font-semibold">Rp. {{ number_format($spp->nominal) }}</option>
                                                             @endforeach
@@ -267,6 +271,11 @@
                                                 id="modal-headline">
                                                 Edit Data Siswa
                                             </h3>
+                                            @error('username')
+                                            <div class="bg-red-100 text-center rounded-lg py-1 my-4">
+                                                <p class="text-red-500 font-semibold "><i class="fas fa-exclamation-circle mr-2"></i>{{$message}}</p>
+                                            </div>
+                                            @enderror
                                             <div class="mt-2">
                                                 <form wire:submit.prevent='updatee'>
                                                     @csrf
@@ -290,7 +299,7 @@
                                                             class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
                                                             <option class="text-gray-700 text-sm font-bold">-- Kelas --
                                                             </option>
-                                                            @foreach ($kelas as $kls)
+                                                            @foreach ($kelass as $kls)
                                                                 <option value="{{ $kls->id }}"
                                                                     class="text-gray-700 text-sm font-semibold">
                                                                     {{ $kls->kelas }} {{ $kls->jurusan }}</option>
@@ -360,7 +369,7 @@
                                                             class="shadow text-gray-700 w-[26rem] text-sm font-bold text-center appearance-none border rounded-lg py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
                                                             <option class="text-gray-700 text-sm font-bold">-- Spp --
                                                             </option>
-                                                            @foreach ($spp as $spp)
+                                                            @foreach ($sppp as $spp)
                                                                 <option value="{{ $spp->id }}"
                                                                     class="text-gray-700 text-sm font-semibold">Rp. {{ number_format($spp->nominal) }}</option>
                                                             @endforeach

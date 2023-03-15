@@ -22,15 +22,17 @@ class Dasis extends Component
 
     public $state;
     public $data, $dataId;
+    public $username;
+
 
     public function render()
     {
 
         $datas = Siswa::latest()->with('kelas','spp')->get();
-        $spp = Spp::all();
-        $kelas = Kelas::all();
+        $sppp = Spp::all();
+        $kelass = Kelas::all();
         // dd($datas);
-        return view('livewire.admin.dasis', compact('datas', 'spp', 'kelas') );
+        return view('livewire.admin.dasis', compact('datas', 'sppp', 'kelass') );
     }
 
     public function export()
@@ -54,6 +56,16 @@ class Dasis extends Component
 
     public function simpann()
     {
+        $data = $this->data;
+        $this->username = $data['username'];
+        $this->validate([
+            'username' => [
+                'required',
+                'unique:m_siswa,username'
+            ],
+        ], [
+            'username.unique' => 'Username sudah digunakan coba yang lain',
+        ]);
         $data = $this->data;
         // dd($data);
         $nama = $data['nama'];
@@ -106,6 +118,16 @@ class Dasis extends Component
 
     public function updatee()
     {
+        $data = $this->data;
+        $this->username = $data['username'];
+        $this->validate([
+            'username' => [
+                'required',
+                'unique:m_siswa,username'
+            ],
+        ],[
+            'username.unique' => 'Username sudah digunakan coba yang lain'
+        ]);
         Siswa::where('id', $this->data['id'])->update([
             'nama' => $this->data['nama'],
             'kelas_id' => $this->data['kelas'],
