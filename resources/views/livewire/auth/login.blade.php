@@ -1,5 +1,5 @@
 <div>
-    <div class="bg-gray-50 lg:-mt-10 ">
+    <div class="lg:-mt-10 ">
         @error('error')
             @message
         @enderror
