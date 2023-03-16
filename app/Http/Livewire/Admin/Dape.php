@@ -90,16 +90,6 @@ class Dape extends Component
 
     public function updatee()
     {
-        $data = $this->data;
-        $this->username = $data['username'];
-        $this->validate([
-            'username' => [
-                'required',
-                'unique:m_petugas,username'
-            ],
-        ], [
-            'username.unique' => 'Username sudah digunakan coba yang lain'
-        ]);
         Petugas::where('id',$this->data['id'])->update([
             'nama' => $this->data['nama'],
             'username' => $this->data['username'],

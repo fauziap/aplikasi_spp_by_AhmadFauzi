@@ -271,11 +271,6 @@
                                                 id="modal-headline">
                                                 Edit Data Siswa
                                             </h3>
-                                            @error('username')
-                                            <div class="bg-red-100 text-center rounded-lg py-1 my-4">
-                                                <p class="text-red-500 font-semibold "><i class="fas fa-exclamation-circle mr-2"></i>{{$message}}</p>
-                                            </div>
-                                            @enderror
                                             <div class="mt-2">
                                                 <form wire:submit.prevent='updatee'>
                                                     @csrf

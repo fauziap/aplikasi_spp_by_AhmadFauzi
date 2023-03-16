@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth as Auth;
 use App\Http\Livewire\Admin as Adm;
-use App\Http\Livewire\Admin\History;
 use App\Http\Livewire\Siswa\History as SiswaHistory;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::middleware(['guest'])->group(function(){
     Route::get('/', [Auth\Authentikasi::class, 'index'])->name('login');
-    Route::post('/', [Auth\Authentikasi::class, 'login']);
+    // Route::post('/', [Auth\Authentikasi::class, 'login']);
 });
 Route::get('/logout', [Auth\Authentikasi::class, 'logout']);
 
@@ -71,75 +71,8 @@ Route::get('spp/pdf', [Adm\Daspp::class, 'pdf']);
 Route::get('entri/export', [Adm\Entri::class, 'export']);
 Route::get('entri/pdf', [Adm\Entri::class, 'pdf']);
 
-Route::get('history/export', [History::class, 'export']);
-Route::get('history/pdf', [History::class, 'pdf']);
-
-
-
-// admin
-// Route::get('/dashboard', function () {
-//     return view('v_admin.dashboard');
-// })->middleware('can:level,"admin"');
-// Route::get('/dasis', function () {
-//     return view('v_admin.dasis');
-// });
-// Route::get('dasis/export', [Dasis::class, 'export']);
-// Route::get('dasis/pdf', [Dasis::class, 'pdf']);
-
-
-// Route::get('/dape', function () {
-//     return view('v_admin.dape');
-// });
-// Route::get('dape/export', [Dape::class, 'export']);
-// Route::get('dape/pdf', [Dape::class, 'pdf']);
-
-
-// Route::get('/dake', function () {
-//     return view('v_admin.dake');
-// });
-// Route::get('dake/export', [Dake::class, 'export']);
-// Route::get('dake/pdf', [Dake::class, 'pdf']);
-
-
-
-// Route::get('/daspp', function () {
-//     return view('v_admin.daspp');
-// });
-// Route::get('spp/export',[Daspp::class,'export']);
-// Route::get('spp/pdf',[Daspp::class,'pdf']);
-
-// Route::get('/entri', function () {
-//     return view('v_admin.entri');
-// });
-// Route::get('entri/export', [Entri::class, 'export']);
-// Route::get('entri/pdf', [Entri::class, 'pdf']);
-
-
-// Route::get('/history', function () {
-//     return view('v_admin.history');
-// });
-// Route::get('history/export', [History::class, 'export']);
-// Route::get('history/pdf', [History::class, 'pdf']);
-
-// // Petugas
-// // Route::get('/dashboard', function(){
-// //     return view('v_petugas.dashboard');
-// // })->middleware('can:level,"petugas"');
-// Route::get('/petugas/entri', function(){
-//     return view('v_petugas.entrip');
-// });
-// Route::get('/petugas/history', function(){
-//     return view('v_petugas.historyp');
-// });
-
-
-// Siswa
-// Route::get('/siswa', function(){
-//     return view('v_siswa.historys');
-// });
-
-
-// Route::livewire('lala',[TabelDasis::class]);
+Route::get('history/export', [Adm\History::class, 'export']);
+Route::get('history/pdf', [Adm\History::class, 'pdf']);
 
 
 

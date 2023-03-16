@@ -19,6 +19,7 @@ class History extends Component
         // dd($datas);
         return view('livewire.siswa.history', compact('datas'));
     }
+    
     public function export()
     {
         return Excel::download(new SiswaHistory, 'data-history-'. Auth::user()->nama .'.xlsx');

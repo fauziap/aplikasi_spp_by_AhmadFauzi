@@ -118,16 +118,6 @@ class Dasis extends Component
 
     public function updatee()
     {
-        $data = $this->data;
-        $this->username = $data['username'];
-        $this->validate([
-            'username' => [
-                'required',
-                'unique:m_siswa,username'
-            ],
-        ],[
-            'username.unique' => 'Username sudah digunakan coba yang lain'
-        ]);
         Siswa::where('id', $this->data['id'])->update([
             'nama' => $this->data['nama'],
             'kelas_id' => $this->data['kelas'],
