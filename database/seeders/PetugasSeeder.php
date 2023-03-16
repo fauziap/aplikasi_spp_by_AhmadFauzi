@@ -16,19 +16,24 @@ class PetugasSeeder extends Seeder
      */
     public function run()
     {
-        Petugas::create([
+        Petugas::create(
             [
                 'nama' => 'admin',
                 'username' => 'admin@admin.com',
                 'password' => Hash::make('admin@admin.com'),
-                'level' => 'admin'
-            ],
-            [
-                'nama' => 'petugas',
-                'username' => 'petugas@petugas.com',
-                'password' => Hash::make('petugas@petugas.com'),
-                'level' => 'petugas'
-            ],
+                'level' => 'admin',
+                'created_at' => date('Y-m-d H:i:s', time()),
+                'updated_at' => date('Y-m-d H:i:s', time())
+            ]
+        );
+
+        Petugas::create([
+            'nama' => 'petugas',
+            'username' => 'petugas@petugas.com',
+            'password' => Hash::make('petugas@petugas.com'),
+            'level' => 'petugas',
+            'created_at' => date('Y-m-d H:i:s', time()),
+            'updated_at' => date('Y-m-d H:i:s', time())
         ]);
     }
 }

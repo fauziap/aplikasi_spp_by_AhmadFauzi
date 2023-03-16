@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="overflow-x-auto ">
-                <table class=" w-max-screen table-auto">
+                <table class=" w-full table-auto">
                     <thead class="border-b-2 rounded-t-6  border-gray-300">
                         <tr>
                             <th class="px-6 py-3 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">
