@@ -17,6 +17,7 @@
     @stack('script')
     @livewireScripts
     <script src="js/scripts.js"></script>
+    <script src="https://kit.fontawesome.com/cc0bc0809d.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     <x-livewire-alert::scripts />

@@ -39,7 +39,7 @@
                                 Level
                             </th>
                             <th class="px-6 py-3 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">
-                                Aksi
+
                             </th>
                         </tr>
                     </thead>
@@ -60,10 +60,10 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     <button @click="showModal = true" wire:click='showUpdate({{ $data->id }})'
-                                        class="text-blue-500 hover:text-blue-600 mr-2">Edit</a>
+                                        class="text-blue-500 bg-blue-100 rounded-full px-2 py-1 hover:text-blue-600 mr-1"><i class="fas fa-edit"></i></a>
                                         <button wire:click='deletee({{ $data->id }})'
                                             onclick="return confirm('Apakah anda yakin?') || event.stopImmediatePropagation();"
-                                            class="text-red-500 hover:text-red-600">Hapus</button>
+                                            class="text-red-500 bg-red-100 rounded-full px-2 py-1 hover:text-red-600"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach

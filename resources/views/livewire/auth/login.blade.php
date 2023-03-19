@@ -1,8 +1,5 @@
 <div>
     <div class="lg:-mt-10 ">
-        @error('error')
-            @message
-        @enderror
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <div class="text-center text-2xl font-bold text-gray-700 mb-4">
                 <p>App Pembayaran SPP</p>
@@ -35,7 +32,7 @@
                         </div>
                         <div>
                             <button type="submit"
-                                class="w-full text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-1.5 text-center bg-gray-600 dark:hover:bg-gray-700 hover:translate-x-1 transition duration-300 dark:focus:ring-gray-800">Sign
+                                class="w-full text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-1.5 text-center bg-gray-600 dark:hover:bg-gray-700 hover:translate-x-1 transition duration-300 dark:focus:ring-gray-800"><i class="fas fa-sign-in-alt mr-1"></i> Sign
                                 in</button>
                         </div>
                     </form>
